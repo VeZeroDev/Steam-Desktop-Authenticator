@@ -1,5 +1,4 @@
 using System.Net;
-using System.Security.Cryptography;
 using System.Text;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -142,7 +141,7 @@ public class SteamGuardAccount
             if (confirmationsResponse.Confirmations == null)
                 throw new RequestException("Confirmations not found", response.StatusCode, content, null);
 
-            return confirmationsResponse.Confirmations;
+            return confirmationsResponse.Confirmations.OrderBy(x => x.CreationTimeStamp).ToArray();
         }
         catch (Exception e)
         {
@@ -402,7 +401,7 @@ public class SteamGuardAccount
             cts.Cancel();
             tks.SetResult();
         });
-        
+
         var steamUser = steamClient.GetHandler<SteamUser>()!;
 
         var connectTask = tks.Task;
