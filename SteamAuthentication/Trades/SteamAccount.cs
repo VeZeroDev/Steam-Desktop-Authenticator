@@ -97,7 +97,7 @@ public class SteamAccount
         var headers = new List<(string key, string value)>
         {
             ("Accept", "*/*"),
-            ("Accept-Language", "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7"),
+            ("Accept-Language", "en-US;q=0.9,en;q=0.8"),
             ("Connection", "keep-alive"),
             ("Host", "steamcommunity.com"),
             ("User-Agent",
